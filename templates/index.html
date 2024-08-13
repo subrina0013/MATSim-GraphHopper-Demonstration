@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MATSim-GraphHopper</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  /* background-image: url("static/images/transportation_pic1.jpg"); */
+  background-image: url("static/images/simu_traffic2.png");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- the templete is here https://www.w3schools.com/w3css/tryw3css_templates_startup.htm#about -->
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <!-- <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a> -->
+    <img class="pure-img" src="{{ url_for('static', filename='images/gmulogo.jpg') }}"></img>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#how" class="w3-bar-item w3-button"><i></i> HOW</a>
+      <!-- <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a> -->
+      <a href="{{ url_for('runSim') }}" class="w3-bar-item w3-button"><i></i> RUN SIMULATIONS</a>
+      <a href="{{ url_for('results') }}" class="w3-bar-item w3-button"><i></i> SIMULATION RESULTS</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#how" onclick="w3_close()" class="w3-bar-item w3-button">HOW</a>
+  <a href="{{ url_for('runSim') }}" onclick="w3_close()" class="w3-bar-item w3-button">RUN SIMULATIONS</a>
+  <a href="{{ url_for('results') }}" onclick="w3_close()" class="w3-bar-item w3-button">SIMULATION RESULTS</a>
+</nav>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small w3-center">Efficacy of Shortest Path Routing in Complex Traffic Patterns</span><br>
+    <!-- <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br> -->
+    <!-- <span class="w3-large">Something punch line.</span> -->
+     <br><br>
+     <br><br>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn the details</a></p>
+  </div> 
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+  </div>
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center">About The Project</h3>
+  <!-- <p class="w3-center w3-large">Goals</p> -->
+  
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">What it does</p>
+      <p>This is an experimental evaluation to understand to what degree complex traffic patterns can be approximated using shortest path routing approach.</p>
+    </div>
+    
+    <div class="w3-quarter">
+      <i class="w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Goal</p>
+      <p>The Goal is to understand if massive shortest path computation can be used as a fast approximation of traffic simulations.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">What platforms are used</p>
+      <p>We conduct a traffic simulation using MATSim (an agent-based model), and a shortest path routing using GraphHopper (a routing engine for route planning).</p>
+    </div>
+    <div class="w3-quarter">
+      <!-- <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i> -->
+      <i class="w3-margin-bottom w3-jumbo"></i>
+      <i class="w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">How we do it</p>
+      <p>We run the models and compare the output traffic, travel time and other metrics</p>
+    </div>
+  </div>
+  <br><br>
+
+  <p class="w3-center">We model the traffic on the roads that the population (sample) produces.</p> 
+  <p class="w3-center">All trips made by an agent or individual during the course of a day are taken into account. </p>
+  <!-- <p class="w3-center"> Together with journeys for employment, school, shopping, and other purposes, there are more than three million trips made overall.</p> -->
+</div>
+
+<!-- Promo Section - "We know design" -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px">
+  <div class="w3-row-padding">
+    <div class="w3-col m6" style="padding: 2px 15px">
+      <h3>STUDY AREA.</h3>
+      <p>Our study area comprises of eight administrative divisions in DC-Maryland-Virginia (DMV) including Washington D.C., Montgomery County,  Prince George's County in Maryland, and Arlington County, Fairfax County, City of Fairfax, City of Fall church, and City of Alexandra in Virginia</p>
+      <!-- <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View Our Works</a></p> -->
+    </div>
+    <div class="w3-col m6" style="padding-left: 80px;">
+      <img class="w3-image w3-round-large" src="static/images/study_area.png" alt="study area" width="400" height="200">
+    </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<div class="w3-container" style="padding:128px 16px" id="how">
+  <h3 class="w3-center">HOW TO RUN THIS PROJECT</h3>
+  <!-- <p class="w3-center w3-large">The ones who runs this company</p> -->
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <!-- <img src="/w3images/team2.jpg" alt="John" style="width:100%"> -->
+        <div class="w3-container">
+          <h3>Step1</h3>
+          <p class="w3-opacity">Set up the environments</p>
+          <p>This project runs on IntellijIdea and uses Java and Python. Make sure your system has those.</p>
+          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+        <div class="w3-container">
+          <h3>Step2</h3>
+          <p class="w3-opacity">Set up the simulation JAR files.</p>
+          <p>The JAR files for MATSim and GraphHopper are in out.artifacts folder inside <a href="https://github.com/subrina0013/graphhopper_dmv" target="_blank">GraphHopper</a>
+            and <a href="https://github.com/subrina0013/matsim-dmv" target="_blank">MATSIm.</a></p>
+          <p>Update the path for the JAR files (matched with the location where you saved MATSim_DMV and GraphHopper_DMV folder).</p>
+          <p>In app.py make sure the location of the JAR files are matched with the location of your JAR files.</p>
+          <p>In matsim_output.py and gh_output.py make sure the file locations match with the saved file locations.</p>
+          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <!-- <img src="/w3images/team3.jpg" alt="Mike" style="width:100%"> -->
+        <div class="w3-container">
+          <h3>Step3</h3>
+          <p class="w3-opacity">Run simulations</p>
+          <p>Update file input locations in gh_output.py and matsim_output.py.</p>
+          <p> Go to <a href="{{ url_for('runSim') }}">Run Simulations</a> page</p>
+          <p>Run MATSim, GraphHopper and Generate Outputs</p>
+          </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-card">
+        <!-- <img src="/w3images/team4.jpg" alt="Dan" style="width:100%"> -->
+        <div class="w3-container">
+          <h3>Step4</h3>
+          <p class="w3-opacity">Visualize the results</p>
+          <p> Go to <a href="{{ url_for('results') }}">Simulation Results</a> page</p>
+          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-container w3-center w3-light-grey" style="padding:80px 16px">
+    <div class="w3-col m6">
+      <span class="w3-xlarge">HOAD HIERARCHY</span>
+    </div>
+    <div class="w3-col m6">
+      <span class="w3-xlarge">CAR TRAFFIC SIMULATION </span>
+    </div>
+</div>
+
+<div class="w3-container w3-center w3-light-grey" style="padding-bottom: 100px" id="abmVideo">
+    <!-- <h3>SIMULATION OF CAR TRAFFIC</h3> -->
+    <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="static/images/road_hierarchy.png" alt="road hierarchy" width="350" height="250">
+      </div>
+
+    <video controls width="700"> 
+        <source src="static/images/DMV_whole_day.mp4" type="video/mp4"> 
+    </video>
+  </div>
+
+<div class="w3-row-padding w3-section" style="padding:50px 5px">
+    <div class="w3-col l3 m6">
+      <img src="static/images/transportation_pic1.jpg" style="width:100%; height: 300px" onclick="onClick(this)" class="w3-hover-opacity" alt="Transportation1">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="static/images/dmv_sign.jpeg" style="width:100%; height: 300px" onclick="onClick(this)" class="w3-hover-opacity" alt="DMV">
+    </div>
+    <div class="w3-col l3 m6">
+        <img src="static/images/abm1.png" style="width:100%; height: 300px" onclick="onClick(this)" class="w3-hover-opacity" alt="ABM">
+    </div>
+    <div class="w3-col l3 m6">
+        <img src="static/images/transportation_pic3.jpg" style="width:100%; height: 300px" onclick="onClick(this)" class="w3-hover-opacity" alt="Transportation2">
+    </div>
+    </div>
+  </div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>© Tunaggina Khan</p>
+</footer>
+ 
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>

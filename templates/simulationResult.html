@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+</head>
+<body>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/resultStats')
+            .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+            .then(data => {
+                // Assuming you have placeholders in your HTML to show these values
+                // document.getElementById('mat_gh_length_triptime').textContent = data.mat_gh_length_triptime;
+                document.getElementById('vmt_mat_km').textContent = data.vmt_mat_km.toFixed(2) + ' km';
+                document.getElementById('vmt_mat_mi').textContent = data.vmt_mat_mi.toFixed(2) + ' mile';
+                document.getElementById('vmt_gh_km').textContent = data.vmt_gh_km.toFixed(2) + ' km';
+                document.getElementById('vmt_gh_mi').textContent = data.vmt_gh_mi.toFixed(2) + ' mile';
+                document.getElementById('vmt_percent_change_km').textContent = data.vmt_percent_change_km.toFixed(2);
+                document.getElementById('avg_trip_len_mat_km').textContent = data.avg_trip_len_mat_km.toFixed(2)+ ' km';
+                document.getElementById('avg_trip_len_gh_km').textContent = data.avg_trip_len_gh_km.toFixed(2)+ ' km';
+                document.getElementById('len_percent_change').textContent = data.len_percent_change.toFixed(2);
+                document.getElementById('avg_trip_time_mat_min').textContent = data.avg_trip_time_mat_min.toFixed(2)+ ' min';
+                document.getElementById('avg_trip_time_gh_min').textContent = data.avg_trip_time_gh_min.toFixed(2)+ ' min';
+                document.getElementById('time_percent_change').textContent = data.time_percent_change.toFixed(2);
+                document.getElementById('avg_spent_time_mat_min').textContent = data.avg_spent_time_mat_min.toFixed(2)+ ' min';
+                document.getElementById('avg_spent_time_gh_min').textContent = data.avg_spent_time_mat_min.toFixed(2)+ ' min';
+                document.getElementById('spent_percent_change').textContent = data.spent_percent_change.toFixed(2)+ ' min';
+
+              });
+      
+        });
+        </script>
+
+  <div class="w3-top">
+    <div class="w3-bar w3-white w3-card" id="myNavbar">
+      <!-- <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a> -->
+      <img class="pure-img" src="{{ url_for('static', filename='images/gmulogo.jpg') }}"></img>
+      <!-- Right-sided navbar links -->
+      <div class="w3-right w3-hide-small">
+        
+        <a href="#regression" class="w3-bar-item w3-button"><i></i> REGRESSION</a>
+        <a href="#morningTrips" class="w3-bar-item w3-button"><i></i> MORNING TRIPS</a>
+        <a href="#metrics" class="w3-bar-item w3-button">METRICS</a>
+      </div>
+      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+  
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="w3-container w3-light-grey" style="padding:100px 16px" id="regression">
+    <h3 class="w3-center">REGRESSION ANALYSIS</h3>
+    <br><br>
+        <div class="w3-col m6  w3-center">
+            <span class="w3-large">Travel DIstance</span>
+        </div>
+        <div class="w3-col m6  w3-center">
+            <span class="w3-large">Travel Time</span>
+        </div>
+        <br><br>
+
+        <div class="w3-row-padding" style="padding-left: 100px;">
+          <div class="w3-col m6" >
+            <img class="w3-image w3-round-large w3-center" src="{{ url_for('regression_distPlot') }}" alt="regression dist plot" width="550" height="300">
+          </div>
+          <div class="w3-col m6" >
+            <img class="w3-image w3-round-large w3-center" src="{{ url_for('regression_timePlot') }}" alt="regression time plot" width="550" height="300">
+          </div>
+        </div>
+      </div>
+
+
+<div class="w3-container " style="padding:80px 16px" id="morningTrips">
+<h3 class="w3-center">TRIPS IN MORNING PEAK (6AM-9AM)</h3>
+<br><br>
+    <div class="w3-col m6  w3-center">
+        <span class="w3-large">All Trips</span>
+    </div>
+    <div class="w3-col m6  w3-center">
+        <span class="w3-large">Trips Where GraphHopper Travel Time > MATSim</span>
+    </div>
+    <br><br>
+<!-- <div class="w3-container w3-light-grey" style="padding:15px 10px"> -->
+    <div class="w3-row-padding" style="padding-left: 100px;">
+      <div class="w3-col m6" >
+          <img class="w3-image w3-round-large w3-center" src="{{ url_for('morningPeak_plotAll') }}" alt="study area" width="550" height="300">
+      </div>
+      <div class="w3-col m6" >
+        <img class="w3-image w3-round-large w3-center" src="{{ url_for('morningPeak_plotGH') }}" alt="study area" width="550" height="300">
+      </div>
+    </div>
+  </div>
+
+
+<div class="w3-container w3-white" style="padding:128px 16px" id="metrics">
+  <h3 class="w3-center">METRICS</h3>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <p class="w3-large">Daily Vehicle Mile Traveled (VMT)</p>
+      <p>For MATSim : <span id="vmt_mat_mi"></span>  (<span id="vmt_mat_km"></span>).</p>
+    <p>For Graphhopper : <span id="vmt_gh_mi"></span>  (<span id="vmt_gh_km"></span>).</p> 
+    <p>Change from MATSim is <span id="vmt_percent_change_km"></span> %.</p>
+    </div>
+    <div class="w3-quarter">
+      <p class="w3-large">Average Trip Length</p>
+      <p>For MATSim : <span id="avg_trip_len_mat_km"></span>  (<span id="avg_trip_len_mat_km"></span>).</p>
+    <p>For Graphhopper : <span id="avg_trip_len_gh_km"></span>  (<span id="avg_trip_len_gh_km"></span>).</p> 
+    <p>Change from MATSim is <span id="len_percent_change"></span> %.</p>
+    </div>
+    <div class="w3-quarter">
+      <p class="w3-large">Average Trip Time</p>
+      <p>For MATSim : <span id="avg_trip_time_mat_km"></span>  (<span id="avg_trip_time_mat_km"></span>).</p>
+    <p>For Graphhopper : <span id="avg_trip_time_gh_km"></span>  (<span id="avg_trip_time_gh_km"></span>).</p> 
+    <p>Change from MATSim is <span id="time_percent_change"></span> %.</p>
+    </div>
+    <div class="w3-quarter">
+      <p class="w3-large">Agents' Average Time Spent on Road</p>
+      <p>For MATSim : <span id="avg_spent_time_mat_min"></span>  (<span id="avg_spent_time_mat_min"></span>).</p>
+    <p>For Graphhopper : <span id="avg_spent_time_gh_min"></span>  (<span id="avg_spent_time_gh_min"></span>).</p> 
+    <p>Change from MATSim is <span id="spent_percent_change"></span> %.</p>
+    </div>
+  </div>
+</div>
+
+
+ 
+<script>
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+<br><br>
+<h4 align="center"><a href="{{ url_for('home') }}">Home</a></h4>
+<br><br>
+<br><br>
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#regression" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>© Tunaggina Khan</p>
+</footer>
+
+</body>
+</html>
