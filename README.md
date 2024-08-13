@@ -12,25 +12,25 @@ This project runs on IntellijIdea and uses Java and Python. Make sure your syste
 Step2:
 Set up the simulation JAR files:
 
-The JAR files for MATSim and GraphHopper are in out.artifacts folder here (https://github.com/subrina0013/graphhopper_dmv, https://github.com/subrina0013/matsim_dmv).
+- The JAR files for MATSim and GraphHopper are in out.artifacts folder here (https://github.com/subrina0013/graphhopper_dmv, https://github.com/subrina0013/matsim_dmv).
 
-Update the path for the JAR files (matched with the location where you saved MATSim_DMV and GraphHopper_DMV folder).
+- Update the path for the JAR files (matched with the location where you saved MATSim_DMV and GraphHopper_DMV folder).
 
-In app.py make sure the location of the JAR files are matched with the location of your JAR files.
+- In app.py make sure the location of the JAR files are matched with the location of your JAR files.
 
-In matsim_output.py and gh_output.py make sure the file locations match with the saved file locations.
+- In matsim_output.py and gh_output.py make sure the file locations match with the saved file locations.
 
 Step3:
 Run simulations:
 
-Go to Run Simulations page
+- Go to Run Simulations page
 
-Run MATSim, GraphHopper and Generate Outputs
+- Run MATSim, GraphHopper and Generate Outputs
 
 Step4:
 Visualize the results:
 
-Go to Simulation Results page
+- Go to Simulation Results page
 
 Following things need to be installed:
 
