@@ -4,14 +4,12 @@ The primary focus of this study is on assessing the viability of a fast, shortes
 
 How to run the demo:
 
-Step1
-
+Step1:
 Set up the environments:
 
 This project runs on IntellijIdea and uses Java and Python. Make sure your system has those.
 
-Step2
-
+Step2:
 Set up the simulation JAR files:
 
 The JAR files for MATSim and GraphHopper are in out.artifacts folder here (https://github.com/subrina0013/graphhopper_dmv, https://github.com/subrina0013/matsim_dmv).
@@ -22,16 +20,14 @@ In app.py make sure the location of the JAR files are matched with the location 
 
 In matsim_output.py and gh_output.py make sure the file locations match with the saved file locations.
 
-Step3
-
+Step3:
 Run simulations:
 
 Go to Run Simulations page
 
 Run MATSim, GraphHopper and Generate Outputs
 
-Step4
-
+Step4:
 Visualize the results:
 
 Go to Simulation Results page
