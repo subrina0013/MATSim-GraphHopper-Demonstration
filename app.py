@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request, redirect, make_response, jsonify, send_from_directory
-import authenticate
-import matplotlib
-import csv
 import json
 import subprocess
-# from core.plot_generator import *
 from core.matsim_output import *
 
 # app is an instance of the Flask class

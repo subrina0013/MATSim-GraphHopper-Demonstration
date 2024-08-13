@@ -19,7 +19,6 @@ body, html {
 .bgimg-1 {
   background-position: center;
   background-size: cover;
-  /* background-image: url("static/images/transportation_pic1.jpg"); */
   background-image: url("static/images/simu_traffic2.png");
   min-height: 100%;
 }
@@ -31,18 +30,14 @@ body, html {
 </head>
 <body>
 
-<!-- the templete is here https://www.w3schools.com/w3css/tryw3css_templates_startup.htm#about -->
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <!-- <a href="#home" class="w3-bar-item w3-button w3-wide">LOGO</a> -->
     <img class="pure-img" src="{{ url_for('static', filename='images/gmulogo.jpg') }}"></img>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
       <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
       <a href="#how" class="w3-bar-item w3-button"><i></i> HOW</a>
-      <!-- <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a> -->
       <a href="{{ url_for('runSim') }}" class="w3-bar-item w3-button"><i></i> RUN SIMULATIONS</a>
       <a href="{{ url_for('results') }}" class="w3-bar-item w3-button"><i></i> SIMULATION RESULTS</a>
     </div>
@@ -67,8 +62,6 @@ body, html {
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-left w3-text-white" style="padding:48px">
     <span class="w3-jumbo w3-hide-small w3-center">Efficacy of Shortest Path Routing in Complex Traffic Patterns</span><br>
-    <!-- <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br> -->
-    <!-- <span class="w3-large">Something punch line.</span> -->
      <br><br>
      <br><br>
     <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn the details</a></p>
@@ -111,16 +104,13 @@ body, html {
 
   <p class="w3-center">We model the traffic on the roads that the population (sample) produces.</p> 
   <p class="w3-center">All trips made by an agent or individual during the course of a day are taken into account. </p>
-  <!-- <p class="w3-center"> Together with journeys for employment, school, shopping, and other purposes, there are more than three million trips made overall.</p> -->
 </div>
 
-<!-- Promo Section - "We know design" -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
   <div class="w3-row-padding">
     <div class="w3-col m6" style="padding: 2px 15px">
       <h3>STUDY AREA.</h3>
       <p>Our study area comprises of eight administrative divisions in DC-Maryland-Virginia (DMV) including Washington D.C., Montgomery County,  Prince George's County in Maryland, and Arlington County, Fairfax County, City of Fairfax, City of Fall church, and City of Alexandra in Virginia</p>
-      <!-- <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View Our Works</a></p> -->
     </div>
     <div class="w3-col m6" style="padding-left: 80px;">
       <img class="w3-image w3-round-large" src="static/images/study_area.png" alt="study area" width="400" height="200">
@@ -131,22 +121,18 @@ body, html {
 <!-- Team Section -->
 <div class="w3-container" style="padding:128px 16px" id="how">
   <h3 class="w3-center">HOW TO RUN THIS PROJECT</h3>
-  <!-- <p class="w3-center w3-large">The ones who runs this company</p> -->
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <!-- <img src="/w3images/team2.jpg" alt="John" style="width:100%"> -->
         <div class="w3-container">
           <h3>Step1</h3>
           <p class="w3-opacity">Set up the environments</p>
           <p>This project runs on IntellijIdea and uses Java and Python. Make sure your system has those.</p>
-          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
         </div>
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
         <div class="w3-container">
           <h3>Step2</h3>
           <p class="w3-opacity">Set up the simulation JAR files.</p>
@@ -155,13 +141,11 @@ body, html {
           <p>Update the path for the JAR files (matched with the location where you saved MATSim_DMV and GraphHopper_DMV folder).</p>
           <p>In app.py make sure the location of the JAR files are matched with the location of your JAR files.</p>
           <p>In matsim_output.py and gh_output.py make sure the file locations match with the saved file locations.</p>
-          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
         </div>
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <!-- <img src="/w3images/team3.jpg" alt="Mike" style="width:100%"> -->
         <div class="w3-container">
           <h3>Step3</h3>
           <p class="w3-opacity">Run simulations</p>
@@ -173,12 +157,10 @@ body, html {
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <!-- <img src="/w3images/team4.jpg" alt="Dan" style="width:100%"> -->
         <div class="w3-container">
           <h3>Step4</h3>
           <p class="w3-opacity">Visualize the results</p>
           <p> Go to <a href="{{ url_for('results') }}">Simulation Results</a> page</p>
-          <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Contact</button></p> -->
         </div>
       </div>
     </div>
@@ -187,7 +169,7 @@ body, html {
 
 <div class="w3-container w3-center w3-light-grey" style="padding:80px 16px">
     <div class="w3-col m6">
-      <span class="w3-xlarge">HOAD HIERARCHY</span>
+      <span class="w3-xlarge">ROAD HIERARCHY</span>
     </div>
     <div class="w3-col m6">
       <span class="w3-xlarge">CAR TRAFFIC SIMULATION </span>

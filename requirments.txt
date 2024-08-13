@@ -1,0 +1,8 @@
+pip install flask
+pip install subprocess
+pip install scipy
+pip install numpy
+pip install seaborn
+pip install matplotlib
+pip install re
+pip install pandas
