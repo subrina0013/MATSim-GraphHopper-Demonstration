@@ -32,8 +32,7 @@ Visualize the results:
 
 - Go to Simulation Results page
 
-Following things need to be installed:
-
+Following things need to be installed:  
 flask, subprocess, scipy, numpy, seaborn, matplotlib, re , pandas
 
 run 'pip install -r requirements.txt' in terminal
